@@ -1,0 +1,17 @@
+{
+  "name": "rohm-bm1383-glv",
+  "version": "0.0.0",
+  "description": "Rohm BM1383glv Barometer driver",
+  "keywords": [
+    "rohm",
+    "bm1383",
+    "barometer"
+  ],
+  "author": "Mikko Koivunen",
+  "repository": {
+    "url": "https://github.com/MikkoZ-Rohm/rohm-bm1383-glv.git",
+    "type": "git"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {}
+}
