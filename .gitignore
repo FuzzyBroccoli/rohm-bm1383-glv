@@ -37,3 +37,6 @@ yotta_targets/
 build/
 upload.tar.gz
 .yotta.json
+
+# Mercurial
+.hg/*
