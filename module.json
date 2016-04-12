@@ -1,6 +1,7 @@
 {
   "name": "rohm-bm1383-glv",
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "license": "Apache-2.0",
   "description": "Rohm BM1383glv Barometer driver",
   "keywords": [
     "rohm",
@@ -12,6 +13,7 @@
     "url": "https://github.com/MikkoZ-Rohm/rohm-bm1383-glv.git",
     "type": "git"
   },
-  "license": "Apache-2.0",
-  "dependencies": {}
+  "dependencies": {
+    "rohm-sensor-hal": "~0.1.0"
+  }
 }
