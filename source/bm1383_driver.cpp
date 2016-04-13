@@ -12,7 +12,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-#include "../../rohm-sensor-hal/rohm-sensor-hal/rohm_hal.h"         //types, DEBUG_print*
+#include "../../rohm-sensor-hal/rohm-sensor-hal/rohm_hal.h"         //types, rohmhal_print*
 #include "../../rohm-sensor-hal/rohm-sensor-hal/I2CCommon.h"        //read_register, write_register, change_bits
 
 #include "../rohm-bm1383-glv/bm1383glv.h"      //BM1383_* register definitions
@@ -28,11 +28,11 @@ uint8_t bm1383_readId(){
 
   read_bytes = read_register(SAD, BM1383GLV_ID_REG, &id, 1);
   if ( read_bytes > 0 ){
-    DEBUG_printf("Id: %d", id);
+    rohmhal_printf("Id: %d\n\r", id);
     return(id);
     }
   else{
-    DEBUG_print("Sorry, ID read failed.");
+    rohmhal_printf("Sorry, ID read failed.\n\r");
     return 255;
     }
 }
@@ -42,7 +42,7 @@ void bm1383_wait_until_found(){
 
   id = bm1383_readId();
   while (id == 255){
-    wait(100);
+    rohmhal_delay(100);
     id = bm1383_readId();
     }
   return;
@@ -76,7 +76,7 @@ bool bm1383_start_measurement_continuous(uint8_t continuous_mode){
     return change_bits(SAD, BM1383GLV_MODE_CONTROL_REG, BM1383GLV_MODE_CONTROL_REG_MODE_MASK, continuous_mode);
     }
   else{
-    DEBUG_print("Wrong continuous mode.");
+    rohmhal_printf("Wrong continuous mode.\n\r");
     return false;
     }
 }
@@ -95,7 +95,7 @@ float bm1383_read_pressure(){
         si_converted = bm1383_pressure_conversion(incoming[0], incoming[1], incoming[2]);
         }
     else {
-        DEBUG_print("Not enough bytes from pressure registers.");
+        rohmhal_printf("Not enough bytes from pressure registers.\n\r");
         si_converted = 0;
         }
     return si_converted;
@@ -182,5 +182,4 @@ bool bm1383_is_treshold_low_crossed(){
     read_register(SAD, BM1383GLV_INT_CONTROL_REG, &value, 1);
     return ( (value & BM1383GLV_INT_CONTROL_REG_TRESHOLD_LOW_MASK) == BM1383GLV_INT_CONTROL_REG_TRESHOLD_LOW_CROSSED );
 }
-
 
